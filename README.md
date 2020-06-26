@@ -1,51 +1,36 @@
-# VM - Virtual Machine
-bundle install- installs ruby dependencies
+# User Installation
 
-#### Provisions
+## Prerequisites
+		- Ruby (at least v2.6) & Bundler
+		- VirtualBox
+    - Vagrant
 
-shell 'provision' files are used to feed the software everything it needs at start up.
+## Steps
 
-E.g. These are terminal commands that one would execute after initiating 'vagrant'. (written in the shell file)
-```
-sudo apt-get -y update
+1) Clone repo
+	- Provides you with a copy of provisioning-starter-code
+2) Open git bash / equivalent
+3) `$ cd starter-code`
+4) `$ vagrant up`
+	- Starts up VM server (will take some time)
+	- Check it is present / running in VirtualBox Manager
 
-sudo apt-get -y install nginx
+5) `$ cd environment/spec-tests`
+6) `$ rake spec`
+	- To initialise and perform set tests
+	- EXPECTED: 9 EXAMPLES, 0 FAILURES
+7) `$ vagrant ssh`
+8) `$ cd /app`
+9) `$ npm start`
+	- 'Your app is ready and listening on port 3000'
+10) In browser, go to ip:port
+	- 192.168.10.100:3000
+	- Welcome to the Sparta Test App
 
-service nginx start
+### Feedback
 
-sudo apt-get -y install nodejs npm
-```
-Having the shell file and linking it using the following code below, would allow the code to automatically execute.
-Must be written in Vagrantfile.
-```
-config.vm.provision "shell", path: "environment/provision.sh"
-```
-#### Rake Spec - tests assertions laid out in 'sample_spec.rb'
-.rpsec - ruby inspect [testing framework]
-
-#### Add folder to VM
-This sends 'app' folder to VM & syncs connection both ways.
-Must be written in Vagrantfile.
-```
-config.vm.synced_folder "app", "/app"
-```
-
-#### Access VM
-This command gives access to VM and its folders
-
-```bash
-vagrant ssh
-```
-
-
-### Node App#
-npm - node package manager
-npm install - install packages for node
-npm start -
-
-### tests
-
-unit tests vs integration tests
-
-unit tests test one piece of code at a time (i.e. code written on top of machine)
-integration tests test the entire machine (i.e. virtualbox)
+- BE MORE DESCRIPTIVE
+- BE SPECIFIC WITH DIRECTORY LOCATIONS
+- put manual in main README
+- list steps to run tests
+- explain how to reach website
